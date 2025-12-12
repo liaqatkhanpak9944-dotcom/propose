@@ -24,9 +24,11 @@
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
+            max-width: 650px; /* Increased max width for Urdu text */
             width: 100%;
             animation: fadeIn 2s ease-out;
+            direction: rtl; /* Set direction right-to-left for better Urdu display */
+            text-align: right;
         }
 
         @keyframes fadeIn {
@@ -39,6 +41,8 @@
             font-size: 3em;
             margin-bottom: 20px;
             animation: pulse 1.5s infinite alternate;
+            direction: ltr; /* Keep heading centered */
+            text-align: center;
         }
 
         @keyframes pulse {
@@ -62,6 +66,7 @@
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
+            direction: ltr; /* Keep buttons LTR for standard layout */
         }
 
         button {
@@ -103,6 +108,9 @@
             font-weight: bold;
             color: white;
             display: none; /* Hide until a button is clicked */
+            direction: rtl; /* Ensure Urdu response is RTL */
+            text-align: right;
+            line-height: 1.8;
         }
 
         .yes-response {
@@ -114,6 +122,13 @@
             background-color: #ef9a9a; /* Light red/pink for sadness */
             color: #b71c1c;
         }
+        
+        .shayari {
+            font-family: 'Jameel Noori Nastaleeq', 'Arial Unicode MS', serif; /* Use Nastaleeq if available */
+            font-size: 1.5em;
+            font-weight: normal;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -123,7 +138,7 @@
 
         <div id="proposalText">
             <p>
-                My dearest **[Replace with your girlfriend's actual name, e.g., Maya]**, from the moment I first saw you, I knew my life was about to change. You are the sunshine that chases away the clouds, the quiet melody in my heart, and the most incredible person I have ever known. Every shared smile, every long talk, every simple moment has built a love that is now the very foundation of my world.
+                My dearest pokeeeee from the moment I first saw you, I knew my life was about to change. You are the sunshine that chases away the clouds, the quiet melody in my heart, and the most incredible person I have ever known. Every shared smile, every long talk, every simple moment has built a love that is now the very foundation of my world.
             </p>
             <p>
                 You make me a better person. You inspire me to dream bigger and love deeper. I can't imagine a future, a single day, or a single moment of joy or challenge without you by my side. You are my best friend, my soulmate, and my forever love.
@@ -132,7 +147,7 @@
                 So, here, in this moment, I want to ask you the most important question of my life:
             </p>
 
-            <p style="font-size: 1.5em; color: #e91e63; font-weight: bold;">
+            <p style="font-size: 1.5em; color: #e91e63; font-weight: bold; text-align: center;">
                 **Will you marry me?**
             </p>
 
@@ -156,21 +171,52 @@
             proposalText.style.display = 'none';
 
             if (isYes) {
-                // YES Response
+                // YES Response (Happy Shayari)
                 responseMessage.className = 'yes-response';
-                responseMessage.innerHTML = '💍 **OH MY GOD! I LOVE YOU!** This is the happiest day of my life! My heart is yours forever, and I promise to spend every day making you feel like the most cherished person on earth. We are going to have the most beautiful life together!';
+                responseMessage.innerHTML = `
+                    <p style="text-align: center; font-size: 2em; margin-bottom: 10px;">
+                        💍 **میری جان! میں دنیا کا سب سے خوش نصیب انسان ہوں!**
+                    </p>
+                    <div class="shayari">
+                        خوشی سے آج میرے دل میں دھڑکنیں گنگنا رہی ہیں،<br>
+                        یہ زندگی کی نئی منزلیں ہمیں بلا رہی ہیں۔<br>
+                        تم نے جو ہاں کہا، ہر خواب میرا پورا ہوا،<br>
+                        اب یہ سفر تمہارے سنگ، جہاں کو بتا رہا ہے۔<br>
+                        <br>
+                        یہ پیار کا بندھن ہے، جو کبھی نہ ٹوٹے گا،<br>
+                        ہمارا ساتھ اب ہر حال میں، ہر دور میں ہو گا۔
+                    </div>
+                    <p style="text-align: center; margin-top: 20px; font-weight: bold;">
+                        I love you, my future wife!
+                    </p>
+                `;
             } else {
-                // NO Response (Sad Paragraph)
+                // NO Response (Sad Shayari)
                 responseMessage.className = 'no-response';
-                responseMessage.innerHTML = '💔 **(Sigh)** My heart breaks to hear that. I understand, and I respect your decision, though the silence in my world just became deafening. The thought of a future without you is one I don\'t know how to face. All I can say is that my love for you will never fade, and I truly wish you all the happiness in the world, even if I\'m not the one giving it to you.';
+                responseMessage.innerHTML = `
+                    <p style="text-align: center; font-weight: normal; margin-bottom: 5px;">
+                        (Sigh) I understand, and I respect your decision, though my heart is heavy...
+                    </p>
+                    <div class="shayari">
+                        وہ چلی گئی، تو یہ دل کا نگر بھی لٹ گیا۔<br>
+                        جو خواب تھے نگاہوں میں، وہ سب بکھر گئے۔<br>
+                        میں نے چاہا تھا کہ تیرا ہاتھ تھام کر چلوں،<br>
+                        مگر قسمت کی لکیریں تھیں، جو جدا کر گئیں۔<br>
+                        <br>
+                        اب زندگی میں روشنی کا گزر کہاں،<br>
+                        ہر طرف وہی تنہائی، وہی دردِ جگر ہے۔
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-weight: bold;">
+                        All I can say is that my love for you will never fade.
+                    </p>
+                `;
             }
 
             // Show the response message
             responseMessage.style.display = 'block';
 
-            // Optional: You can make the whole page sparkle or play a sound here for 'YES'
+            // Optional: Celebrate if YES
             if (isYes) {
-                // Change the background color to something super celebratory
                 document.body.style.backgroundColor = '#fff9c4'; // Light gold
                 document.getElementById('proposalContainer').style.boxShadow = '0 0 50px #ffd700'; // Gold glow
             }
