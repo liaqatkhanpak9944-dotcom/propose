@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Question for My Love</title>
+    <style>
+        /* CSS for a beautiful, romantic look */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fce4ec; /* Light pink background */
+            color: #4a148c; /* Deep purple text for romance */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff; /* White card background */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #e91e63; /* Pink for the special name */
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .heart {
+            color: #ff4081; /* Bright pink heart */
+            font-size: 1.5em;
+            margin-left: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #yesBtn {
+            background-color: #4caf50; /* Green for Yes */
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+
+        #noBtn {
+            background-color: #f44336; /* Red for No */
+            color: white;
+        }
+
+        #noBtn:hover {
+            background-color: #d32f2f;
+            transform: scale(1.05);
+        }
+
+        /* Style for the response messages */
+        #responseMessage {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: white;
+            display: none; /* Hide until a button is clicked */
+        }
+
+        .yes-response {
+            background-color: #8bc34a; /* Light green for joy */
+            color: #4a148c;
+        }
+
+        .no-response {
+            background-color: #ef9a9a; /* Light red/pink for sadness */
+            color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="proposalContainer">
+        <h1>pookeeeeee g <span class="heart">❤️</span></h1>
+
+        <div id="proposalText">
+            <p>
+                My dearest **[Replace with your girlfriend's actual name, e.g., Maya]**, from the moment I first saw you, I knew my life was about to change. You are the sunshine that chases away the clouds, the quiet melody in my heart, and the most incredible person I have ever known. Every shared smile, every long talk, every simple moment has built a love that is now the very foundation of my world.
+            </p>
+            <p>
+                You make me a better person. You inspire me to dream bigger and love deeper. I can't imagine a future, a single day, or a single moment of joy or challenge without you by my side. You are my best friend, my soulmate, and my forever love.
+            </p>
+            <p>
+                So, here, in this moment, I want to ask you the most important question of my life:
+            </p>
+
+            <p style="font-size: 1.5em; color: #e91e63; font-weight: bold;">
+                **Will you marry me?**
+            </p>
+
+            <div class="buttons">
+                <button id="yesBtn" onclick="handleResponse(true)">YES!</button>
+                <button id="noBtn" onclick="handleResponse(false)">NO</button>
+            </div>
+        </div>
+
+        <div id="responseMessage" class="no-response">
+            </div>
+
+    </div>
+
+    <script>
+        function handleResponse(isYes) {
+            const proposalText = document.getElementById('proposalText');
+            const responseMessage = document.getElementById('responseMessage');
+
+            // Hide the original proposal and buttons
+            proposalText.style.display = 'none';
+
+            if (isYes) {
+                // YES Response
+                responseMessage.className = 'yes-response';
+                responseMessage.innerHTML = '💍 **OH MY GOD! I LOVE YOU!** This is the happiest day of my life! My heart is yours forever, and I promise to spend every day making you feel like the most cherished person on earth. We are going to have the most beautiful life together!';
+            } else {
+                // NO Response (Sad Paragraph)
+                responseMessage.className = 'no-response';
+                responseMessage.innerHTML = '💔 **(Sigh)** My heart breaks to hear that. I understand, and I respect your decision, though the silence in my world just became deafening. The thought of a future without you is one I don\'t know how to face. All I can say is that my love for you will never fade, and I truly wish you all the happiness in the world, even if I\'m not the one giving it to you.';
+            }
+
+            // Show the response message
+            responseMessage.style.display = 'block';
+
+            // Optional: You can make the whole page sparkle or play a sound here for 'YES'
+            if (isYes) {
+                // Change the background color to something super celebratory
+                document.body.style.backgroundColor = '#fff9c4'; // Light gold
+                document.getElementById('proposalContainer').style.boxShadow = '0 0 50px #ffd700'; // Gold glow
+            }
+        }
+    </script>
+
+</body>
+</html>
