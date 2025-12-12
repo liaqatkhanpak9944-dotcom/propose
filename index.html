@@ -5,91 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Question for My Love</title>
     <style>
-        /* CSS for the Beautiful View and Effects */
+        /* CSS for a beautiful, romantic look */
         body {
             font-family: 'Georgia', serif;
-            background-color: #fce4ec; 
-            color: #4a148c; 
+            background-color: #fce4ec; /* Light pink background */
+            color: #4a148c; /* Deep purple text for romance */
             display: flex;
-            flex-direction: column; /* Allows content to flow vertically */
-            justify-content: flex-start; /* Aligns content from top */
+            justify-content: center;
             align-items: center;
-            /* min-height removed to allow natural scrolling */
+            min-height: 100vh;
             margin: 0;
-            padding: 30px 20px; /* Added padding for space */
             text-align: center;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            padding: 20px;
         }
-
-        /* --- Moving Heart Background --- */
-        .heart-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; 
-            z-index: -1;
-        }
-
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #ff69b4;
-            transform: rotate(-45deg);
-            animation: moveHearts 10s linear infinite;
-        }
-
-        .heart::before, .heart::after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #ff69b4;
-            border-radius: 50%;
-        }
-
-        .heart::before { top: -10px; left: 0; }
-        .heart::after { top: 0; left: 10px; }
-
-        @keyframes moveHearts {
-            0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(-45deg); opacity: 0; }
-        }
-        /* --- End Moving Heart Background --- */
-
 
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: #ffffff; /* White card background */
             padding: 40px;
             border-radius: 15px;
-            max-width: 650px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 650px; /* Increased max width for Urdu text */
             width: 100%;
-            margin-bottom: 30px; /* Space at the bottom */
             animation: fadeIn 2s ease-out;
-            direction: rtl; 
+            direction: rtl; /* Set direction right-to-left for better Urdu display */
             text-align: right;
-            
-            /* --- Red Blurry Edge (Box Shadow Effect) --- */
-            box-shadow: 
-                0 0 10px rgba(255, 0, 0, 0.3), 
-                0 0 30px rgba(255, 0, 0, 0.5), 
-                0 0 50px rgba(255, 0, 0, 0.7); 
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            color: #e91e63;
+            color: #e91e63; /* Pink for the special name */
             font-size: 3em;
             margin-bottom: 20px;
             animation: pulse 1.5s infinite alternate;
-            direction: ltr; 
+            direction: ltr; /* Keep heading centered */
             text-align: center;
         }
 
@@ -104,8 +56,8 @@
             margin-bottom: 30px;
         }
 
-        .heart-icon {
-            color: #ff4081; 
+        .heart {
+            color: #ff4081; /* Bright pink heart */
             font-size: 1.5em;
             margin-left: 10px;
         }
@@ -114,7 +66,7 @@
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
-            direction: ltr; 
+            direction: ltr; /* Keep buttons LTR for standard layout */
         }
 
         button {
@@ -127,12 +79,27 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        #yesBtn { background-color: #4caf50; color: white; }
-        #noBtn { background-color: #f44336; color: white; }
-        #yesBtn:hover { background-color: #388e3c; transform: scale(1.05); }
-        #noBtn:hover { background-color: #d32f2f; transform: scale(1.05); }
+        #yesBtn {
+            background-color: #4caf50; /* Green for Yes */
+            color: white;
+        }
 
-        /* Response message styling */
+        #yesBtn:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+
+        #noBtn {
+            background-color: #f44336; /* Red for No */
+            color: white;
+        }
+
+        #noBtn:hover {
+            background-color: #d32f2f;
+            transform: scale(1.05);
+        }
+
+        /* Style for the response messages */
         #responseMessage {
             margin-top: 30px;
             padding: 20px;
@@ -140,23 +107,24 @@
             font-size: 1.4em;
             font-weight: bold;
             color: white;
-            display: none; 
-            direction: rtl; 
+            display: none; /* Hide until a button is clicked */
+            direction: rtl; /* Ensure Urdu response is RTL */
             text-align: right;
             line-height: 1.8;
         }
 
         .yes-response {
-            background-color: #8bc34a; 
+            background-color: #8bc34a; /* Light green for joy */
             color: #4a148c;
         }
 
         .no-response {
-            background-color: #ef9a9a; 
+            background-color: #ef9a9a; /* Light red/pink for sadness */
             color: #b71c1c;
         }
         
         .shayari {
+            font-family: 'Jameel Noori Nastaleeq', 'Arial Unicode MS', serif; /* Use Nastaleeq if available */
             font-size: 1.5em;
             font-weight: normal;
             margin-top: 20px;
@@ -165,23 +133,12 @@
 </head>
 <body>
 
-    <div class="heart-bg">
-        <div class="heart" style="left: 10%; animation-duration: 9s; animation-delay: 0s;"></div>
-        <div class="heart" style="left: 20%; animation-duration: 11s; animation-delay: 2s;"></div>
-        <div class="heart" style="left: 30%; animation-duration: 8s; animation-delay: 4s;"></div>
-        <div class="heart" style="left: 40%; animation-duration: 12s; animation-delay: 1s;"></div>
-        <div class="heart" style="left: 50%; animation-duration: 7s; animation-delay: 3s;"></div>
-        <div class="heart" style="left: 60%; animation-duration: 10s; animation-delay: 5s;"></div>
-        <div class="heart" style="left: 70%; animation-duration: 9s; animation-delay: 1s;"></div>
-        <div class="heart" style="left: 80%; animation-duration: 13s; animation-delay: 4s;"></div>
-        <div class="heart" style="left: 90%; animation-duration: 8s; animation-delay: 0s;"></div>
-    </div>
     <div class="container" id="proposalContainer">
-        <h1>pookeeeeee g <span class="heart-icon">❤️</span></h1>
+        <h1>pookeeeeee g <span class="heart">❤️</span></h1>
 
         <div id="proposalText">
             <p>
-                My dearest **Ayesha**, from the moment I first saw you, I knew my life was about to change. You are the sunshine that chases away the clouds, the quiet melody in my heart, and the most incredible person I have ever known. Every shared smile, every long talk, every simple moment has built a love that is now the very foundation of my world.
+                My dearest **[Replace with your girlfriend's actual name, e.g., Ayesha]**, from the moment I first saw you, I knew my life was about to change. You are the sunshine that chases away the clouds, the quiet melody in my heart, and the most incredible person I have ever known. Every shared smile, every long talk, every simple moment has built a love that is now the very foundation of my world.
             </p>
             <p>
                 You make me a better person. You inspire me to dream bigger and love deeper. I can't imagine a future, a single day, or a single moment of joy or challenge without you by my side. You are my best friend, my soulmate, and my forever love.
@@ -209,14 +166,12 @@
         function handleResponse(isYes) {
             const proposalText = document.getElementById('proposalText');
             const responseMessage = document.getElementById('responseMessage');
-            const container = document.getElementById('proposalContainer');
 
             // Hide the original proposal and buttons
             proposalText.style.display = 'none';
-            container.style.boxShadow = 'none'; // Remove red glow after decision
 
             if (isYes) {
-                // YES Response (Happy Shayari + Heart Emoji)
+                // YES Response (Happy Shayari)
                 responseMessage.className = 'yes-response';
                 responseMessage.innerHTML = `
                     <p style="text-align: center; font-size: 2em; margin-bottom: 10px;">
@@ -227,20 +182,20 @@
                         یہ زندگی کی نئی منزلیں ہمیں بلا رہی ہیں۔<br>
                         تم نے جو ہاں کہا، ہر خواب میرا پورا ہوا،<br>
                         اب یہ سفر تمہارے سنگ، جہاں کو بتا رہا ہے۔<br>
+                        <br>
+                        یہ پیار کا بندھن ہے، جو کبھی نہ ٹوٹے گا،<br>
+                        ہمارا ساتھ اب ہر حال میں، ہر دور میں ہو گا۔
                     </div>
                     <p style="text-align: center; margin-top: 20px; font-weight: bold;">
-                        I love you, my future wife! ❤️
+                        I love you, my future wife!
                     </p>
                 `;
-                 // Change background to be more celebratory on YES
-                document.body.style.backgroundColor = '#fff9c4'; 
-
             } else {
-                // NO Response (Sad Shayari + Sad Emoji)
+                // NO Response (Sad Shayari)
                 responseMessage.className = 'no-response';
                 responseMessage.innerHTML = `
                     <p style="text-align: center; font-weight: normal; margin-bottom: 5px;">
-                        (Sigh) I understand, and I respect your decision, though my heart is heavy... 😔
+                        (Sigh) I understand, and I respect your decision, though my heart is heavy...
                     </p>
                     <div class="shayari">
                         وہ چلی گئی، تو یہ دل کا نگر بھی لٹ گیا۔<br>
@@ -259,6 +214,12 @@
 
             // Show the response message
             responseMessage.style.display = 'block';
+
+            // Optional: Celebrate if YES
+            if (isYes) {
+                document.body.style.backgroundColor = '#fff9c4'; // Light gold
+                document.getElementById('proposalContainer').style.boxShadow = '0 0 50px #ffd700'; // Gold glow
+            }
         }
     </script>
 
